@@ -1,7 +1,7 @@
 {
   "name": "appliqation-explorer",
   "version": "0.1.0",
-  "description": "Standalone agent that runs Appliqation's exploratory-QA workflow (appq:runman) headlessly against a live app under test — the same senior-QA heuristics pass, without a human at the confirmation gate.",
+  "description": "Standalone agent that runs Appliqation's exploratory-QA workflow (appq:runman) headlessly against a live app under test \u2014 the same senior-QA heuristics pass, without a human at the confirmation gate.",
   "type": "module",
   "bin": {
     "appliqation-explorer": "./dist/cli/index.js"
@@ -9,8 +9,13 @@
   "engines": {
     "node": ">=20"
   },
+  "files": [
+    "dist/",
+    "README.md",
+    "LICENSE"
+  ],
   "scripts": {
-    "build": "tsc -p tsconfig.json",
+    "build": "tsc -p tsconfig.build.json",
     "dev": "tsx src/cli/index.ts",
     "typecheck": "tsc -p tsconfig.json --noEmit",
     "lint": "eslint src --ext .ts",
