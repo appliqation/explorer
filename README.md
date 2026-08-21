@@ -17,16 +17,19 @@ When `appq:runman` runs interactively inside Claude Code, a human is present at 
 ## Quick start
 
 ```bash
-git clone https://github.com/appliqation/appliqation-explorer.git
-cd appliqation-explorer
-npm install
-cp .env.example .env   # fill in APPQ_API_KEY (read-only is enough) and one LLM provider key
-npm run build
+npm install -g appliqation-explorer
 npx playwright install chromium
 ```
 
+Create a `.env` file (in whatever directory you'll run it from) with:
+
+```
+APPQ_API_KEY=your-appliqation-api-key   # read-only is enough
+ANTHROPIC_API_KEY=your-anthropic-key    # or OPENAI_API_KEY — pick one
+```
+
 ```bash
-npx appliqation-explorer explore \
+appliqation-explorer explore \
   --prompt "Explore the signup flow like a senior QA lead, focus on the phone number field" \
   --project-id 1349 \
   --site-url https://stage.example.com
@@ -41,6 +44,10 @@ Copy `.env.example` to `.env`. Requires `APPQ_API_KEY` (read-only access is suff
 ## Development
 
 ```bash
+git clone https://github.com/appliqation/appliqation-explorer.git
+cd appliqation-explorer
+npm install
+cp .env.example .env   # fill in APPQ_API_KEY (read-only is enough) and one LLM provider key
 npm run dev -- explore --prompt "<text>" [--project-id <id>] [--site-url <url>]
 npm run typecheck
 npm test
