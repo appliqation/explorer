@@ -17,7 +17,7 @@ When `appq:runman` runs interactively inside Claude Code, a human is present at 
 ## Quick start
 
 ```bash
-npm install -g appliqation-explorer
+npm install -g @appliqation/explorer
 npx playwright install chromium
 ```
 
