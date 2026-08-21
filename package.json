@@ -1,6 +1,6 @@
 {
   "name": "appliqation-explorer",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Standalone agent that runs Appliqation's exploratory-QA workflow (appq:runman) headlessly against a live app under test \u2014 the same senior-QA heuristics pass, without a human at the confirmation gate.",
   "type": "module",
   "bin": {
