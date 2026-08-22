@@ -3,9 +3,14 @@
   "version": "0.1.1",
   "description": "Standalone agent that runs Appliqation's exploratory-QA workflow (appq:runman) headlessly against a live app under test — the same senior-QA heuristics pass, without a human at the confirmation gate.",
   "license": "MIT",
-  "repository": { "type": "git", "url": "git+https://github.com/appliqation/explorer.git" },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/appliqation/explorer.git"
+  },
   "homepage": "https://github.com/appliqation/explorer#readme",
-  "bugs": { "url": "https://github.com/appliqation/explorer/issues" },
+  "bugs": {
+    "url": "https://github.com/appliqation/explorer/issues"
+  },
   "type": "module",
   "bin": {
     "appliqation-explorer": "./dist/cli/index.js"
@@ -27,7 +32,7 @@
     "test:watch": "vitest"
   },
   "dependencies": {
-    "@appliqation/agent-core": "^0.1.4",
+    "@appliqation/agent-core": "^0.1.5",
     "commander": "^13.1.0",
     "dotenv": "^16.4.7",
     "playwright": "^1.51.0"
