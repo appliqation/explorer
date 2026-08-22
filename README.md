@@ -41,6 +41,18 @@ Add `--json`/`--ci` for a structured summary. There's no `--dry-run` — this ag
 
 Copy `.env.example` to `.env`. Requires `APPQ_API_KEY` (read-only access is sufficient) and one of `ANTHROPIC_API_KEY`/`OPENAI_API_KEY`. `EXPLORE_MAX_STEPS`/`EXPLORE_MAX_PAGES`/`EXPLORE_MAX_MINUTES` are the workflow's own self-regulated budget (what the model is told to respect); `BUDGET_MAX_*` is a separate, code-enforced backstop set generously above them in case the model doesn't honor its own limits.
 
+## Running this safely
+
+This agent drives a real browser turn by turn on the model's own decisions — the whole point of exploratory QA is going wherever the site under test leads, unattended, with no human at the confirmation gate the interactive version has. The destructive-action gate on `browser_click`/`browser_evaluate` (see `@appliqation/agent-core`'s `destructiveActionGate.ts`) blocks the obvious failure mode, but it's a code-level backstop, not a substitute for containment: this process holds `APPQ_API_KEY` and your LLM provider key, both reachable from wherever the model decides to navigate.
+
+**Run this inside a container with an egress allowlist**, not directly on a machine with broad network access. This process only ever legitimately needs to reach:
+
+- your LLM provider (`api.anthropic.com` or `api.openai.com`)
+- your configured `APPQ_ORIGIN` (`appq.appliqation.io` by default)
+- the site under test — whatever `--site-url` (or the resolved project URL) points at
+
+Anything else this process tries to reach is unexpected and worth investigating, not routing around.
+
 ## Development
 
 ```bash
