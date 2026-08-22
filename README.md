@@ -12,7 +12,7 @@ Every other agent in this family answers a narrow, structured question: does thi
 
 `appq:runman`'s own prompt ends a pass by calling `enrich_project_context` with `action=write`, to persist findings (`known_issues`, `high_risk_areas`, `regression_watchlist`) as memory for future passes. **This agent refuses that call.**
 
-When `appq:runman` runs interactively inside Claude Code, a human is present at its Phase 2 confirmation gate and reads the findings report before anything happens next — informal but real supervision over what gets written back as fact for future agents to trust. A standalone, headless invocation has no equivalent: nothing reviews it turn to turn. So this agent holds the conservative default instead: it can read project context (`enrich_project_context` with `action=read` — informs what's worth exploring), but a write attempt is refused at the dispatch layer, in code, before it ever reaches appq — not honored just because the served prompt asks for it. Genuinely read-only end to end; see [`@appliqation/agent-core`](https://github.com/appliqation/appliqation-agent-core)'s `createReadOnlyProjectContextDispatcher`.
+When `appq:runman` runs interactively inside Claude Code, a human is present at its Phase 2 confirmation gate and reads the findings report before anything happens next — informal but real supervision over what gets written back as fact for future agents to trust. A standalone, headless invocation has no equivalent: nothing reviews it turn to turn. So this agent holds the conservative default instead: it can read project context (`enrich_project_context` with `action=read` — informs what's worth exploring), but a write attempt is refused at the dispatch layer, in code, before it ever reaches appq — not honored just because the served prompt asks for it. Genuinely read-only end to end; see [`@appliqation/agent-core`](https://github.com/appliqation/agent-core)'s `createReadOnlyProjectContextDispatcher`.
 
 ## Quick start
 
@@ -44,8 +44,8 @@ Copy `.env.example` to `.env`. Requires `APPQ_API_KEY` (read-only access is suff
 ## Development
 
 ```bash
-git clone https://github.com/appliqation/appliqation-explorer.git
-cd appliqation-explorer
+git clone https://github.com/appliqation/explorer.git
+cd explorer
 npm install
 cp .env.example .env   # fill in APPQ_API_KEY (read-only is enough) and one LLM provider key
 npm run dev -- explore --prompt "<text>" [--project-id <id>] [--site-url <url>]
