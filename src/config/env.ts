@@ -29,6 +29,9 @@ export const config = {
     maxPages: Number(optional('BUDGET_MAX_PAGES') ?? 40),
     maxMillis: Number(optional('BUDGET_MAX_MILLIS') ?? 25 * 60 * 1000),
     maxTurns: Number(optional('BUDGET_MAX_TURNS') ?? 80),
+    // A broad backstop against runaway spend, not a tuned budget — the other
+    // caps above are what normally end a run first. Includes cache tokens.
+    maxTotalTokens: Number(optional('BUDGET_MAX_TOTAL_TOKENS') ?? 2_000_000),
   },
 
   evidenceRingBufferCap: Number(optional('EVIDENCE_RING_BUFFER_CAP') ?? 500),
