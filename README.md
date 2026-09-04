@@ -37,6 +37,28 @@ appliqation-explorer explore \
 
 Add `--json`/`--ci` for a structured summary. There's no `--dry-run` — this agent never has real write access to anything, so there's nothing to suppress. The exit code is 0 unless the pass hit its own budget cap and ended early; "found bugs" is never a failure — that's the entire point of running it.
 
+## CLI reference
+
+`appliqation-explorer explore [options]`
+
+**Required:**
+
+| Option | Description |
+|---|---|
+| `--prompt <text>` | Plain-English exploration intent — can embed a URL. |
+
+**Optional:**
+
+| Option | Description |
+|---|---|
+| `--project-id <id>` | appq project id — enables reading persistent project-context memory. |
+| `--site-url <url>` | Override the URL `appq:runman` would otherwise resolve on its own. |
+| `--max-steps <n>` | Override `EXPLORE_MAX_STEPS` for this run. |
+| `--max-pages <n>` | Override `EXPLORE_MAX_PAGES` for this run. |
+| `--max-minutes <n>` | Override `EXPLORE_MAX_MINUTES` for this run. |
+| `--json` | Print a single structured JSON summary on stdout instead of a human-readable report. |
+| `--ci` | Shorthand for `--json`. |
+
 ## Configuration
 
 Copy `.env.example` to `.env`. Requires `APPQ_API_KEY` (read-only access is sufficient) and one of `ANTHROPIC_API_KEY`/`OPENAI_API_KEY`. `EXPLORE_MAX_STEPS`/`EXPLORE_MAX_PAGES`/`EXPLORE_MAX_MINUTES` are the workflow's own self-regulated budget (what the model is told to respect); `BUDGET_MAX_*` is a separate, code-enforced backstop set generously above them in case the model doesn't honor its own limits.
